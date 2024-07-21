@@ -1,12 +1,16 @@
 // Require the framework and instantiate it
 const fastify = require('fastify')({ logger: true })
 const app = require('./app');
+const connectDB = require('./config/dbConfig');
+
+const {PORT} = require("./config/serverConfig");
 
 fastify.register(app);
 
-
 // Run the server!
-fastify.listen({ port: 3000 }, (err) => {
+fastify.listen({port:PORT},async (err) => {
+  await connectDB();
+  console.log(`Server running on port:${PORT}`)
   if (err) {
     fastify.log.error(err)
     process.exit(1)

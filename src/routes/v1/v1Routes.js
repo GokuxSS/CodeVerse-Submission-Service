@@ -1,5 +1,5 @@
 async function v1Routes(fastify,options){
-    fastify.register(require('./test/testRoutes'),{
+    fastify.register(require('./submissionRoutes'),{
         prefix: '/v1'
     })
 }
